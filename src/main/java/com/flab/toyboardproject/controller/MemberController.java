@@ -1,8 +1,8 @@
 package com.flab.toyboardproject.controller;
 
 import com.flab.toyboardproject.application.MemberService;
-import com.flab.toyboardproject.domain.Member;
 import com.flab.toyboardproject.dto.request.MemberSaveRequest;
+import com.flab.toyboardproject.dto.response.MemberInfoResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +19,7 @@ public class MemberController {
     }
 
     @GetMapping("/api/members")
-    public List<Member> getMemberList() {
+    public List<MemberInfoResponse> getMemberList() {
         return memberService.getMemberList();
     }
 

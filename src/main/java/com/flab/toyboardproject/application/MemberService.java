@@ -2,6 +2,7 @@ package com.flab.toyboardproject.application;
 
 import com.flab.toyboardproject.domain.Member;
 import com.flab.toyboardproject.dto.request.MemberSaveRequest;
+import com.flab.toyboardproject.dto.response.MemberInfoResponse;
 import com.flab.toyboardproject.mapper.MemberMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,8 +18,12 @@ public class MemberService {
         this.memberMapper = memberMapper;
     }
 
-    public List<Member> getMemberList() {
-        return memberMapper.getMemberList();
+    public List<MemberInfoResponse> getMemberList() {
+        List<Member> memberList = memberMapper.getMemberList();
+
+        return memberList.stream()
+                .map(member -> new MemberInfoResponse(member.getLoginId(), member.getUserName(), member.getEmail(), member.getStatus()))
+                .toList();
     }
 
     @Transactional
