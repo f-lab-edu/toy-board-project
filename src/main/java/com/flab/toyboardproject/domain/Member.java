@@ -8,11 +8,11 @@ public class Member {
     private String userName;
     private String password;
     private String email;
-    private String status;
+    private MemberStatus status;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public Member(String loginId, String userName, String password, String email, String status) {
+    public Member(String loginId, String userName, String password, String email, MemberStatus status) {
         this.loginId = loginId;
         this.userName = userName;
         this.password = password;
@@ -60,11 +60,11 @@ public class Member {
         this.email = email;
     }
 
-    public String getStatus() {
+    public MemberStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(MemberStatus status) {
         this.status = status;
     }
 

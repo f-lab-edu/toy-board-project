@@ -1,6 +1,5 @@
 package com.flab.toyboardproject.application;
 
-import com.flab.toyboardproject.domain.Member;
 import com.flab.toyboardproject.dto.request.MemberSaveRequest;
 import com.flab.toyboardproject.dto.response.MemberInfoResponse;
 import com.flab.toyboardproject.mapper.MemberMapper;
@@ -19,11 +18,7 @@ public class MemberService {
     }
 
     public List<MemberInfoResponse> getMemberList() {
-        List<Member> memberList = memberMapper.getMemberList();
-
-        return memberList.stream()
-                .map(member -> new MemberInfoResponse(member.getLoginId(), member.getUserName(), member.getEmail(), member.getStatus()))
-                .toList();
+        return memberMapper.getMemberList();
     }
 
     @Transactional
