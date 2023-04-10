@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:community
+    username: sa
+    password:
+
+server:
+  port: 8081
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
