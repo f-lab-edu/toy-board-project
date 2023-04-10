@@ -6,13 +6,7 @@ create table member (
     user_name   varchar(255) not null comment '회원 이름',
     password   varchar(255) not null comment '비밀번호',
     email         varchar(255) not null comment 'email',
-    status        varchar(30)  not null default 'ACTIVE' comment '상태',
-    created_at    datetime(6) not null comment '생성 일시',
+    status        varchar(30)  not null default 'ENABLE' comment '상태',
+    created_at    datetime(6) null comment '생성 일시',
     updated_at    datetime(6) null comment '수정 일시'
 );
-
-create
-    index member_idx01 on member (login_id);
-
-create
-    index member_idx02 on member (user_name);

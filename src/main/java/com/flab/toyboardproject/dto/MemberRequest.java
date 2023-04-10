@@ -1,7 +1,7 @@
 package com.flab.toyboardproject.dto;
 
 
-public class RequestMember {
+public class MemberRequest {
 
     private String loginId;
 
@@ -10,6 +10,13 @@ public class RequestMember {
     private String password;
 
     private String email;
+
+    public MemberRequest(String loginId, String userName, String password, String email) {
+        this.loginId = loginId;
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+    }
 
 
     public String getLoginId() {
