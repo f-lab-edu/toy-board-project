@@ -1,5 +1,6 @@
 package com.flab.toyboardproject.application;
 
+import com.flab.toyboardproject.domain.MemberVo;
 import com.flab.toyboardproject.dto.request.MemberSaveRequest;
 import com.flab.toyboardproject.dto.response.MemberInfoResponse;
 import com.flab.toyboardproject.mapper.MemberMapper;
@@ -24,5 +25,10 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void saveMember(MemberSaveRequest memberSaveRequest) {
         memberMapper.saveMember(memberSaveRequest.toEntity());
+    }
+
+    @Override
+    public MemberVo simpleLogin(String loginId, String password) {
+        return memberMapper.simpleLogin(loginId, password);
     }
 }
