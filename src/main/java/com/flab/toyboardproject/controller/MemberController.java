@@ -49,6 +49,16 @@ public class MemberController {
         return new MemberInfoResponse(memberVo.getLoginId(), memberVo.getUserName(), memberVo.getEmail(), memberVo.getStatus());
     }
 
+    @PostMapping("/api/login/basic")
+    public MemberInfoResponse basicLogin(@RequestBody LoginRequest loginRequest) {
+        return memberService.basicLogin(loginRequest.getLoginId(), loginRequest.getPassword());
+    }
+
+    @GetMapping("/api/login/basic")
+    public String getBasicLogin() {
+        return "정상";
+    }
+
     @GetMapping("/api/members")
     public List<MemberInfoResponse> getMemberList() {
         return memberService.getMemberList();

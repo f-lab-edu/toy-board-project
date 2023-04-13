@@ -19,4 +19,6 @@ public interface MemberService {
     void aopLogin(String loginId, String password, HttpSession session);
 
     MemberVo getAopLoginMemberInfo(HttpSession session);
+
+    MemberInfoResponse basicLogin(String loginId, String password);
 }

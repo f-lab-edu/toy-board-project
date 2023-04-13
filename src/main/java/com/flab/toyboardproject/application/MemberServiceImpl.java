@@ -64,5 +64,11 @@ public class MemberServiceImpl implements MemberService {
         return (MemberVo) session.getAttribute(LOGIN_TOKEN);
     }
 
+    @Override
+    public MemberInfoResponse basicLogin(String loginId, String password) {
+        MemberVo memberVo = memberMapper.simpleLogin(loginId, password);
+        return new MemberInfoResponse(memberVo.getLoginId(), memberVo.getUserName(), memberVo.getEmail(), memberVo.getStatus());
+    }
+
 
 }

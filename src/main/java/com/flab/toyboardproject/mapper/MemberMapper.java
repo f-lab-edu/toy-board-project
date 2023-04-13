@@ -12,4 +12,5 @@ public interface MemberMapper {
     List<MemberInfoResponse> getMemberList();
     void saveMember(Member member);
     MemberVo simpleLogin(String loginId, String password);
+    Member login(String loginId, String password);
 }
