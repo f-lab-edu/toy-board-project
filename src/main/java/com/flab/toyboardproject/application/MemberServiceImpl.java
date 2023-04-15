@@ -1,8 +1,9 @@
 package com.flab.toyboardproject.application;
 
+import com.flab.toyboardproject.domain.member.MemberCreate;
+import com.flab.toyboardproject.domain.member.MemberFind;
 import com.flab.toyboardproject.dto.request.MemberSaveRequest;
 import com.flab.toyboardproject.dto.response.MemberInfoResponse;
-import com.flab.toyboardproject.mapper.MemberMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,19 +11,21 @@ import java.util.List;
 @Service
 public class MemberServiceImpl implements MemberService {
 
-    private final MemberMapper memberMapper;
+    private final MemberCreate memberCreate;
+    private final MemberFind memberFind;
 
-    public MemberServiceImpl(MemberMapper memberMapper) {
-        this.memberMapper = memberMapper;
+    public MemberServiceImpl(MemberCreate memberCreate, MemberFind memberFind) {
+        this.memberCreate = memberCreate;
+        this.memberFind = memberFind;
     }
 
     @Override
     public List<MemberInfoResponse> getMemberList() {
-        return memberMapper.getMemberList();
+        return memberFind.getMemberList();
     }
 
     @Override
     public void saveMember(MemberSaveRequest memberSaveRequest) {
-        memberMapper.saveMember(memberSaveRequest.toEntity());
+        memberCreate.save(memberSaveRequest.toEntity());
     }
 }

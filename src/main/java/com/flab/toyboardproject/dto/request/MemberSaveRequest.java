@@ -1,7 +1,7 @@
 package com.flab.toyboardproject.dto.request;
 
-import com.flab.toyboardproject.domain.Member;
-import com.flab.toyboardproject.domain.MemberStatus;
+import com.flab.toyboardproject.domain.member.Member;
+import com.flab.toyboardproject.domain.Status;
 
 public class MemberSaveRequest {
     private String loginId;
@@ -17,7 +17,7 @@ public class MemberSaveRequest {
     }
 
     public Member toEntity() {
-        return new Member(getLoginId(), getUserName(), getPassword(), getEmail(), MemberStatus.ACTIVE);
+        return new Member(getLoginId(), getUserName(), getPassword(), getEmail(), Status.ACTIVE);
     }
 
     public String getLoginId() {

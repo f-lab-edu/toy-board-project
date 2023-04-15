@@ -1,15 +1,15 @@
 package com.flab.toyboardproject.dto.response;
 
-import com.flab.toyboardproject.domain.MemberStatus;
+import com.flab.toyboardproject.domain.Status;
 
 public class MemberInfoResponse {
 
     private String loginId;
     private String userName;
     private String email;
-    private MemberStatus status;
+    private Status status;
 
-    public MemberInfoResponse(String loginId, String userName, String email, MemberStatus status) {
+    public MemberInfoResponse(String loginId, String userName, String email, Status status) {
         this.loginId = loginId;
         this.userName = userName;
         this.email = email;
@@ -28,7 +28,7 @@ public class MemberInfoResponse {
         return email;
     }
 
-    public MemberStatus getStatus() {
+    public Status getStatus() {
         return status;
     }
 }
