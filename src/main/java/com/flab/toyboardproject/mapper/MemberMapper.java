@@ -22,6 +22,15 @@ public interface MemberMapper {
             """)
     MemberResponse getMemberById(@Param("idx") Long idx);
 
+    @Select("""
+            <script>
+                select
+                    member.id, member.login_id, member.user_name, member.email, member.password, member.created_at
+                from member
+                where member.login_id = #{loginId} and status = 'ENABLE'
+            </script>
+            """)
+    MemberResponse getMemberByLoginId(@Param("loginId") String loginId);
 
     @Select("""
             <script>

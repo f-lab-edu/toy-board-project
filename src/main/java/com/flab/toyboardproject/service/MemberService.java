@@ -32,6 +32,13 @@ public class MemberService {
         return memberRepository.findById(id);
     }
 
+    @Transactional(readOnly = true)
+    public Long login(String loginId, String password) {
+        MemberResponse member = memberRepository.findByLoginId(loginId);
+        if (member.getPassword().equals(password))
+            return member.getId();
+        return null;
+    }
 
     @Transactional
     public void createMember(Member member) {
@@ -43,7 +50,6 @@ public class MemberService {
                 MemberStatus.ENABLE
         );
     }
-
 
 //    @Transactional
 //    public void updateMember(Member member) {

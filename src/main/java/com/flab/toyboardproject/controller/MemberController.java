@@ -9,11 +9,11 @@ import com.flab.toyboardproject.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/v1/member")
 public class MemberController {
 
     private MemberService memberService;
@@ -23,14 +23,22 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-
     @PostMapping("/join")
     public void join(@RequestBody MemberRequest memberRequest) {
-
         Member member = new Member(memberRequest.getLoginId(),memberRequest.getPassword(),
                 memberRequest.getUserName(),memberRequest.getEmail(), MemberStatus.ENABLE);
 
         memberService.createMember(member);
+    }
+
+    @PostMapping("/login")
+    public void login(String loginId, String password, HttpSession session) {
+        Long id = memberService.login(loginId, password);
+        if (id == null) {
+            throw new NullPointerException("존재하지 않는 유저입니다.");
+        }
+
+        session.setAttribute("USER_ID", id);
     }
 
     @GetMapping

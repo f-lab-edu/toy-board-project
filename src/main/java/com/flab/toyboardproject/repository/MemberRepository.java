@@ -35,4 +35,7 @@ public class MemberRepository {
         return memberMapper.getMemberById(id);
     }
 
+    public MemberResponse findByLoginId(String loginId) {
+        return memberMapper.getMemberByLoginId(loginId);
+    }
 }

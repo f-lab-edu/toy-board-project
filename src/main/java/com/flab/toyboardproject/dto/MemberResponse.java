@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 public class MemberResponse {
 
-    private Integer id;
+    private Long id;
 
     private String loginId;
 
@@ -19,7 +19,7 @@ public class MemberResponse {
     private LocalDateTime createdAt;
 
 
-    public MemberResponse(Integer id, String loginId, String userName, String password, String email, LocalDateTime createdAt) {
+    public MemberResponse(Long id, String loginId, String userName, String password, String email, LocalDateTime createdAt) {
         this.id = id;
         this.loginId = loginId;
         this.userName = userName;
@@ -28,11 +28,11 @@ public class MemberResponse {
         this.createdAt = createdAt;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
