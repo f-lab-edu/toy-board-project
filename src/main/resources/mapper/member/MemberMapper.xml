@@ -58,9 +58,31 @@
     </select>
 
     <select id="login" resultType="Member" parameterType="String">
-        SELECT *
+        SELECT
+            id,
+            login_id,
+            user_name,
+            password,
+            status,
+            email,
+            created_at,
+            updated_at
         FROM member
         WHERE login_id = #{loginId}
         AND password = #{password}
+    </select>
+
+    <select id="getMemberByLoginId" resultType="Member" parameterType="String">
+        SELECT
+            id,
+            login_id,
+            user_name,
+            password,
+            status,
+            email,
+            created_at,
+            updated_at
+        FROM member
+        WHERE login_id = #{loginId}
     </select>
 </mapper>

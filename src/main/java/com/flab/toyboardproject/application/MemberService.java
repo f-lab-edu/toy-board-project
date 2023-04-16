@@ -1,6 +1,6 @@
 package com.flab.toyboardproject.application;
 
-import com.flab.toyboardproject.domain.MemberVo;
+import com.flab.toyboardproject.domain.member.MemberVo;
 import com.flab.toyboardproject.dto.request.MemberSaveRequest;
 import com.flab.toyboardproject.dto.response.MemberInfoResponse;
 import jakarta.servlet.http.HttpSession;

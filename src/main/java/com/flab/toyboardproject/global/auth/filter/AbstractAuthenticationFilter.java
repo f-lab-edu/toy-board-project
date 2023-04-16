@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.io.IOException;
+import java.util.List;
 
 public abstract class AbstractAuthenticationFilter implements HandlerInterceptor {
     private AuthenticationSuccessHandler successHandler;
@@ -25,6 +26,14 @@ public abstract class AbstractAuthenticationFilter implements HandlerInterceptor
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        String requestURI = request.getRequestURI();
+        List<String> uris = passUri();
+        for (String uri : uris) {
+            if (requestURI.startsWith(uri)) {
+                return getContinueChainBeforeSuccessfulAuthentication();
+            }
+        }
+
         try {
             Authentication authentication = attemptAuthentication(request, response);
             successfulAuthentication(request, response, authentication);
@@ -33,6 +42,10 @@ public abstract class AbstractAuthenticationFilter implements HandlerInterceptor
             unsuccessfulAuthentication(request, response, e);
             return getContinueChainBeforeUnsuccessfulAuthentication();
         }
+    }
+
+    private List<String> passUri() {
+        return List.of("/api/login/simple", "/api/login/aop", "/api/members");
     }
 
     private Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {

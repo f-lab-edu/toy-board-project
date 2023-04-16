@@ -2,7 +2,7 @@ package com.flab.toyboardproject.controller;
 
 import com.flab.toyboardproject.annotation.LoginCheck;
 import com.flab.toyboardproject.application.MemberService;
-import com.flab.toyboardproject.domain.MemberVo;
+import com.flab.toyboardproject.domain.member.MemberVo;
 import com.flab.toyboardproject.dto.request.LoginRequest;
 import com.flab.toyboardproject.dto.request.MemberSaveRequest;
 import com.flab.toyboardproject.dto.response.MemberInfoResponse;

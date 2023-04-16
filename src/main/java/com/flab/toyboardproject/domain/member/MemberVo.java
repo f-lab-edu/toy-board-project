@@ -1,13 +1,15 @@
-package com.flab.toyboardproject.domain;
+package com.flab.toyboardproject.domain.member;
+
+import com.flab.toyboardproject.domain.Status;
 
 public class MemberVo {
     private Long id;
     private String loginId;
     private String userName;
     private String email;
-    private MemberStatus status;
+    private Status status;
 
-    public MemberVo(Long id, String loginId, String userName, String email, MemberStatus status) {
+    public MemberVo(Long id, String loginId, String userName, String email, Status status) {
         this.id = id;
         this.loginId = loginId;
         this.userName = userName;
@@ -27,7 +29,7 @@ public class MemberVo {
         return email;
     }
 
-    public MemberStatus getStatus() {
+    public Status getStatus() {
         return status;
     }
 }
