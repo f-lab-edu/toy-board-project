@@ -1,4 +1,6 @@
-package com.flab.toyboardproject.domain;
+package com.flab.toyboardproject.domain.member;
+
+import com.flab.toyboardproject.domain.Status;
 
 import java.time.LocalDateTime;
 
@@ -8,11 +10,11 @@ public class Member {
     private String userName;
     private String password;
     private String email;
-    private MemberStatus status;
+    private Status status;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public Member(String loginId, String userName, String password, String email, MemberStatus status) {
+    public Member(String loginId, String userName, String password, String email, Status status) {
         this.loginId = loginId;
         this.userName = userName;
         this.password = password;
@@ -60,11 +62,11 @@ public class Member {
         this.email = email;
     }
 
-    public MemberStatus getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(MemberStatus status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

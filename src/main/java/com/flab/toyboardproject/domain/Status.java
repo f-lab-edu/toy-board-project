@@ -1,12 +1,12 @@
 package com.flab.toyboardproject.domain;
 
-public enum MemberStatus {
+public enum Status {
     ACTIVE("ACTIVE"),
     INACTIVE("INACTIVE");
 
     private final String status;
 
-    MemberStatus(String status) {
+    Status(String status) {
         this.status = status;
     }
 
