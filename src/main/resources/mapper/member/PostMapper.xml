@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flab.toyboardproject.mapper.PostMapper">
+    <sql id="noIdPostColumns">
+        member_id,
+        title,
+        content,
+        status,
+        created_at,
+        updated_at
+    </sql>
+
+    <insert id="save" parameterType="Post">
+        INSERT INTO Post(
+                <include refid="noIdPostColumns" />
+        ) VALUES (
+                #{memberId},
+                #{title},
+                #{content},
+                #{status},
+                NOW(),
+                NOW()
+        )
+    </insert>
+
+    <select id="getPosts" resultType="PostInfoResponse">
+        SELECT
+            m.user_name,
+            p.title,
+            p.content,
+            p.status
+        FROM post p
+        JOIN member m
+          ON (p.member_id = m.id)
+    </select>
+
+    <select id="getPostInfo" resultType="PostInfoResponse" parameterType="Long">
+        SELECT
+            m.user_name,
+            p.title,
+            p.content,
+            p.status
+        FROM post p
+        JOIN member m
+          ON (p.member_id = m.id)
+        WHERE p.id = #{postId}
+    </select>
+
+    <select id="getPost" resultType="Post">
+        SELECT <include refid="noIdPostColumns" />
+          FROM post
+        WHERE id = #{postId}
+    </select>
+
+    <update id="updatePost" parameterType="Object">
+        update post
+           set title = #{title},
+               content = #{content}
+        where id = #{postId}
+    </update>
+
+    <update id="updatePostStatus" parameterType="Object">
+        update post
+        set status = #{status}
+        where id = #{postId}
+    </update>
+</mapper>

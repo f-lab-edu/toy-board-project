@@ -31,4 +31,9 @@ public class MemberFindAdapter implements MemberFind {
     public Member login(String loginId, String password) {
         return memberMapper.login(loginId, password);
     }
+
+    @Override
+    public Member getMemberInfo(String loginId) {
+        return memberMapper.getMemberByLoginId(loginId);
+    }
 }
