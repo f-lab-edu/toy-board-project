@@ -38,11 +38,15 @@ public class PostController {
 
     @PutMapping("/api/posts/{postId}")
     public void modify(@PathVariable Long postId, @RequestBody PostUpdateRequest postUpdateRequest) {
-        postService.modify(postId, postUpdateRequest);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String loginId = (String) authentication.getPrincipal();
+        postService.modify(postId, loginId, postUpdateRequest);
     }
 
     @DeleteMapping("/api/posts/{postId}")
     public void delete(@PathVariable Long postId) {
-        postService.delete(postId);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String loginId = (String) authentication.getPrincipal();
+        postService.delete(postId, loginId);
     }
 }

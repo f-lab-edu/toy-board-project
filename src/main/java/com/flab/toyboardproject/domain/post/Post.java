@@ -25,4 +25,20 @@ public class Post {
         this.content = content;
         this.status = status;
     }
+
+    public Long getMemberId() {
+        return memberId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
 }

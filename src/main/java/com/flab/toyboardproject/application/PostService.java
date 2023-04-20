@@ -13,7 +13,7 @@ public interface PostService {
 
     PostInfoResponse getPostInfo(Long postId);
 
-    void modify(Long postId, PostUpdateRequest postUpdateRequest);
+    void modify(Long postId, String loginId, PostUpdateRequest postUpdateRequest);
 
-    void delete(Long postId);
+    void delete(Long postId, String loginId);
 }

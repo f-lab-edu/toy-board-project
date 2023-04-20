@@ -48,22 +48,39 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void modify(Long postId, PostUpdateRequest postUpdateRequest) {
-        Post post = postFind.getPost(postId);
-        if (Objects.isNull(post)) {
-            throw new IllegalArgumentException("해당 게시물이 없습니다.");
+    public void modify(Long postId, String loginId, PostUpdateRequest postUpdateRequest) {
+        Post post = getPost(postId);
+
+        Member member = memberFind.getMemberInfo(loginId);
+        if (equalsMemberId(post.getMemberId(), member.getId())) {
+            throw new IllegalArgumentException("자신이 작성한 게시글만 수정할 수 있습니다");
         }
 
         postCreate.updatePost(postId, postUpdateRequest.getTitle(), postUpdateRequest.getContent());
     }
 
     @Override
-    public void delete(Long postId) {
+    public void delete(Long postId, String loginId) {
+        Post post = getPost(postId);
+
+        Member member = memberFind.getMemberInfo(loginId);
+        if (equalsMemberId(post.getMemberId(), member.getId())) {
+            throw new IllegalArgumentException("자신이 작성한 게시글만 삭제할 수 있습니다");
+        }
+
+        postCreate.updatePostStatus(postId, Status.INACTIVE);
+    }
+
+    private Post getPost(Long postId) {
         Post post = postFind.getPost(postId);
         if (Objects.isNull(post)) {
             throw new IllegalArgumentException("해당 게시물이 없습니다.");
         }
 
-        postCreate.updatePostStatus(postId, Status.INACTIVE);
+        return post;
+    }
+
+    private boolean equalsMemberId(Long memberId, Long target) {
+        return !memberId.equals(target);
     }
 }
